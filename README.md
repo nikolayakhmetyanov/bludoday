@@ -61,3 +61,20 @@ cat .env.local
 ```
 
 Если переменная не установлена, приложение все равно запустится, но Convex функции не будут работать.
+
+## Deployment (Production)
+
+Для продакшен деплоя на Dokploy добавьте переменные окружения:
+
+```bash
+VITE_CONVEX_URL=https://your-production-convex-url.convex.cloud
+CONVEX_SITE_URL=https://convex-site.bludoday.ru
+```
+
+### Домены Convex
+
+Согласно вашей конфигурации Dokploy:
+
+- **Backend API**: `convex-api.bludoday.ru` → порт 3210
+- **Dashboard**: `convex-dashboard.bludoday.ru` → порт 6791
+- **Site**: `convex-site.bludoday.ru` → порт 3211
