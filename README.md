@@ -36,7 +36,28 @@ pnpm biome:write
 ## Установка
 
 ```bash
+# 1. Установить зависимости
 pnpm install
-pnpm convex:dev  # В отдельном терминале
+
+# 2. Настроить Convex (первый раз)
+pnpm convex:dev
+# Следуйте инструкциям:
+# - Создайте аккаунт на convex.dev
+# - Создайте новый проект
+# - VITE_CONVEX_URL автоматически добавится в .env.local
+
+# 3. Запустить dev сервер (в отдельном терминале)
 pnpm dev
 ```
+
+## Первый запуск
+
+После `pnpm convex:dev` проверьте что в `.env.local` появился `VITE_CONVEX_URL`:
+
+```bash
+cat .env.local
+# Должно быть:
+# VITE_CONVEX_URL=https://your-project.convex.cloud
+```
+
+Если переменная не установлена, приложение все равно запустится, но Convex функции не будут работать.
