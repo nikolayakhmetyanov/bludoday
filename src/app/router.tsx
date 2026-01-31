@@ -5,7 +5,7 @@ import { ConvexProvider, ConvexReactClient } from "convex/react";
 import { env } from "../env";
 import { routeTree } from "./routeTree.gen";
 
-export function createRouter() {
+export function getRouter() {
 	const convex = new ConvexReactClient(env.VITE_CONVEX_URL);
 	const queryClient = new QueryClient();
 	const convexQueryClient = new ConvexQueryClient(convex);
@@ -34,6 +34,6 @@ export function createRouter() {
 
 declare module "@tanstack/react-router" {
 	interface Register {
-		router: ReturnType<typeof createRouter>;
+		router: ReturnType<typeof getRouter>;
 	}
 }
