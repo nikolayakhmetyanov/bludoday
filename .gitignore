@@ -7,6 +7,8 @@ dist/
 .output/
 .convex/
 .wrangler/
+.nitro/
+.tanstack/
 
 # Environment
 .env
