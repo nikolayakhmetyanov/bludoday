@@ -6,7 +6,7 @@ import { env } from "../env";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
-	const convex = new ConvexReactClient(env.VITE_CONVEX_URL);
+	const convex = new ConvexReactClient(env.VITE_CONVEX_URL || "");
 	const queryClient = new QueryClient();
 	const convexQueryClient = new ConvexQueryClient(convex);
 
