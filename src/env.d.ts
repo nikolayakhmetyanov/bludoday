@@ -1,15 +1,20 @@
 /// <reference types="vite/client" />
 
-interface ImportMetaEnv {
-	readonly VITE_CONVEX_URL?: string;
-}
+declare global {
+	interface ImportMetaEnv {
+		readonly VITE_CONVEX_URL?: string;
+	}
 
-interface ImportMeta {
-	readonly env: ImportMetaEnv;
-}
+	interface ImportMeta {
+		readonly env: ImportMetaEnv;
+	}
 
-declare namespace NodeJS {
-	interface ProcessEnv {
-		CONVEX_SITE_URL?: string;
+	namespace NodeJS {
+		interface ProcessEnv {
+			CONVEX_SITE_URL?: string;
+		}
 	}
 }
+
+export {};
+

@@ -18,6 +18,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["**/*.ts", "**/*.tsx"],
+	"include": ["**/*.ts", "**/*.tsx", "src/env.d.ts"],
 	"exclude": ["node_modules", ".convex", ".output", "dist"]
 }
