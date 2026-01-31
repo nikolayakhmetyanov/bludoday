@@ -6,29 +6,37 @@ import { env } from "../env";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
-	const convex = new ConvexReactClient(env.VITE_CONVEX_URL || "");
 	const queryClient = new QueryClient();
-	const convexQueryClient = new ConvexQueryClient(convex);
 
-	queryClient.setDefaultOptions({
-		queries: {
-			queryKeyHashFn: convexQueryClient.hashFn(),
-			queryFn: convexQueryClient.queryFn(),
-		},
-	});
+	// Only create Convex client if URL is provided
+	const convexUrl = env.VITE_CONVEX_URL;
+	const convex = convexUrl ? new ConvexReactClient(convexUrl) : undefined;
+
+	if (convex) {
+		const convexQueryClient = new ConvexQueryClient(convex);
+		queryClient.setDefaultOptions({
+			queries: {
+				queryKeyHashFn: convexQueryClient.hashFn(),
+				queryFn: convexQueryClient.queryFn(),
+			},
+		});
+	}
 
 	return createTanStackRouter({
 		routeTree,
 		context: {
 			queryClient,
-			convex,
+			convex: convex as ConvexReactClient | undefined,
 		},
 		defaultPreload: "intent",
-		Wrap: ({ children }) => (
-			<ConvexProvider client={convex}>
+		Wrap: ({ children }) =>
+			convex ? (
+				<ConvexProvider client={convex}>
+					<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+				</ConvexProvider>
+			) : (
 				<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-			</ConvexProvider>
-		),
+			),
 	});
 }
 

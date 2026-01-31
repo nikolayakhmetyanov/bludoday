@@ -5,7 +5,7 @@ import "../styles.css";
 
 interface RouterContext {
 	queryClient: QueryClient;
-	convex: ConvexReactClient;
+	convex?: ConvexReactClient;
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
